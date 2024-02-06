@@ -1,0 +1,28 @@
+<h2>Welcome {{name}}</h2>
+<p>here are our stories</p>
+
+{{#if stories}}
+
+<table>
+    <thead>
+        <tr>
+            <th>title</th>
+            <th>Date</th>
+            <th>Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each stories}}
+        <tr>
+            <td><a href="/stories/{{_id}}">{{title}}</a></td>
+            <td>{{createdAt}}</td>
+            <td class="dash-status">{{status}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{else}}
+    <p>no stories yet</p>
+{{/if}}

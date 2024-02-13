@@ -18,8 +18,14 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor5/41.1.0/ckeditor.min.js" integrity="sha512-YCMGGtBTJzoyMiX8bXh1YmH6agRTDGwwnU4fZlQJVs+RGex1YwNephgKe9lGnNtk6Mn8Snx5YP8HdicVhCNLNg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         M.Sidenav.init(document.querySelector('.sidenav'))
+        M.FormSelect.init(document.querySelector('#status'))
+
+        CKEDITOR.replace('body123',{
+            PluginArray:'wysiwygarea,toolbar,basicstyles,link'
+        })
     </script>
 </body>
 </html>

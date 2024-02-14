@@ -10,6 +10,7 @@ const storySchema = new mongoose.Schema({
         type:String,
         required:true,
         trim:true
+        
     },
     status:{
         type:String,

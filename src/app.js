@@ -5,13 +5,13 @@ const morgan = require('morgan');
 const path = require('path');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
-const connectToDB = require('./config/DB');
+const connectToDB = require('../config/DB');
 const passport = require('passport');
 const methodOverride = require('method-override')
-
+const serverless = require('serverless-http')
 dotenv.config({ path: '.env' });
 
-require('./config/passport')(passport);
+require('../config/passport')(passport);
 
 connectToDB();
 
@@ -36,7 +36,7 @@ if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
-const {formatDate,truncate,stripTags,editIcon,select} = require('./helpers/hbs')
+const {formatDate,truncate,stripTags,editIcon,select} = require('../helpers/hbs')
 
 app.engine('handlebars', engine({
     helpers:{
@@ -73,12 +73,15 @@ app.use(function(req,res,next){
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', require('./routes/index'));
-app.use('/auth', require('./routes/auth'));
-app.use('/stories', require('./routes/stories'));
+app.use('/.netlify/functions/', require('../routes/index'));
+app.use('/.netlify/functions/auth', require('../routes/auth'));
+app.use('/.netlify/functions/stories', require('../routes/stories'));
 
 const port = process.env.PORT || 4000;
 
 app.listen(port, () => {
     console.log(`App is running on PORT : ${port} and in ${process.env.NODE_ENV} mode`);
 });
+
+
+module.exports.handler = serverless(app)

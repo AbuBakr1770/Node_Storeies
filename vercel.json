@@ -1,16 +1,20 @@
 {
-    "version":2,
+    "version": 2,
     "builds": [
-        {
-            "src":"./app.js",
-            "use":"@vercel/node"
+      {
+        "src": "./public/**",
+        "use": "@vercel/static",
+        "config": {
+          "cache": true
         }
-    ],
-    "routes":[
-        {
-            "src": "/(.*)",
-            "dest":"/"
+      },
+      {
+        "src": "!public/**", 
+        "use": "@vercel/node",
+        "config": {
+          "runtime": "nodejs/18.x", 
+          "entrypoint": "app.js" 
         }
+      }
     ]
-
-}
+  }

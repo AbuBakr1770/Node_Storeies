@@ -10,7 +10,7 @@ const storySchema = new mongoose.Schema({
         type:String,
         required:true,
         trim:true
-        
+
     },
     status:{
         type:String,
@@ -26,6 +26,7 @@ const storySchema = new mongoose.Schema({
         type:Date,
         default:Date.now
     }
+    // just added
 })
 
 const Stories = mongoose.model('Stories',storySchema)

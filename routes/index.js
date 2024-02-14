@@ -11,6 +11,13 @@ Router.route('/login').get(ensureGuest, (req,res,next)=>{
     })
 })
 
+Router.route('').get(ensureGuest, (req,res,next)=>{
+
+    res.render('login',{
+        layout:'login'
+    })
+})
+
 Router.route('/dashboard').get(ensureAuth, async (req,res,next)=>{
 
     try {
